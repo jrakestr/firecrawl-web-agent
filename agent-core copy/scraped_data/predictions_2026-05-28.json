@@ -1,0 +1,85 @@
+{
+  "date": "2026-05-28",
+  "scrapedAt": "2026-07-19T07:19:05.497Z",
+  "gamesCount": 6,
+  "games": [
+    {
+      "awayTeam": "Los Angeles Angels",
+      "homeTeam": "Detroit Tigers",
+      "awayPitcher": "Grayson Rodriguez",
+      "homePitcher": "Jack Flaherty",
+      "ml": "-136",
+      "spd": "-1.5",
+      "ou": "8.5",
+      "predictedWinner": "Detroit Tigers",
+      "predictedScore": "5.9-5.0",
+      "actualResult": "Los Angeles Angels wins 7-1",
+      "pickResult": "IncorrectVs Spread Hit"
+    },
+    {
+      "awayTeam": "Minnesota Twins",
+      "homeTeam": "Chicago White Sox",
+      "awayPitcher": "Simeon Woods Richardson",
+      "homePitcher": "Davis Martin",
+      "ml": "-157",
+      "spd": "-1.5",
+      "ou": "7.5",
+      "predictedWinner": "Chicago White Sox",
+      "predictedScore": "4.8-4.3",
+      "actualResult": "Chicago White Sox wins 6-2",
+      "pickResult": "Correct"
+    },
+    {
+      "awayTeam": "Atlanta Braves",
+      "homeTeam": "Boston Red Sox",
+      "awayPitcher": "Chris Sale",
+      "homePitcher": "Payton Tolle",
+      "ml": "+114",
+      "spd": "+1.5",
+      "ou": "6.5",
+      "predictedWinner": "Atlanta Braves",
+      "predictedScore": "3.5-3.1",
+      "actualResult": "Atlanta Braves wins 10-2",
+      "pickResult": "Correct"
+    },
+    {
+      "awayTeam": "Toronto Blue Jays",
+      "homeTeam": "Baltimore Orioles",
+      "awayPitcher": "Patrick Corbin",
+      "homePitcher": "Chris Bassitt",
+      "ml": "-131",
+      "spd": "-1.5",
+      "ou": "8.5",
+      "predictedWinner": "Toronto Blue Jays",
+      "predictedScore": "4.9-4.8",
+      "actualResult": "Toronto Blue Jays wins 2-1",
+      "pickResult": "CorrectMargin HitVs Spread Hit"
+    },
+    {
+      "awayTeam": "Chicago Cubs",
+      "homeTeam": "Pittsburgh Pirates",
+      "awayPitcher": "Colin Rea",
+      "homePitcher": "Paul Skenes",
+      "ml": "-175",
+      "spd": "-1.5",
+      "ou": "7.5",
+      "predictedWinner": "Pittsburgh Pirates",
+      "predictedScore": "5.9-4.9",
+      "actualResult": "Chicago Cubs wins 7-2",
+      "pickResult": "IncorrectVs Spread Hit"
+    },
+    {
+      "awayTeam": "Houston Astros",
+      "homeTeam": "Texas Rangers",
+      "awayPitcher": "Spencer Arrighetti",
+      "homePitcher": "Nathan Eovaldi",
+      "ml": "-143",
+      "spd": "-1.5",
+      "ou": "7.5",
+      "predictedWinner": "Houston Astros",
+      "predictedScore": "4.3-3.2",
+      "actualResult": "Houston Astros wins 5-1",
+      "pickResult": "CorrectVs Spread Hit"
+    }
+  ]
+}

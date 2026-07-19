@@ -73,6 +73,18 @@ export async function POST(req: Request) {
     config: AgentConfig;
   };
 
+  // Diagnostic: surface exactly what the client sent so upload issues are
+  // observable in the server log instead of guessed at.
+  console.log(
+    `[agent] request prompt=${JSON.stringify(config?.prompt)} uploads=${
+      config?.uploads?.length ?? 0
+    }${
+      config?.uploads?.length
+        ? ` [${config.uploads.map((u) => `${u.name}:${u.content?.length ?? 0}b`).join(", ")}]`
+        : ""
+    }`,
+  );
+
   const firecrawlApiKey = getFirecrawlKey();
   if (!firecrawlApiKey) {
     return new Response(

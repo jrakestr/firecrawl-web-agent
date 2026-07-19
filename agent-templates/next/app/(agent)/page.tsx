@@ -274,7 +274,11 @@ function PlusMenu({
 
   const visibleSkills = (skills ?? []).filter((s) => s.category !== "Export");
 
-  const menuItems: { id: "schema" | "skills"; label: string; icon: React.ReactNode; badge?: string }[] = [
+  const menuItems: { id: "upload" | "schema" | "skills"; label: string; icon: React.ReactNode; badge?: string }[] = [
+    {
+      id: "upload", label: "Upload", badge: uploads.length > 0 ? String(uploads.length) : undefined,
+      icon: <svg fill="none" height="16" viewBox="0 0 24 24" width="16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M21.44 11.05l-9.19 9.19a6 6 0 01-8.49-8.49l9.19-9.19a4 4 0 015.66 5.66l-9.2 9.19a2 2 0 01-2.83-2.83l8.49-8.48" /></svg>,
+    },
     {
       id: "schema", label: "Schema", badge: schema ? "set" : undefined,
       icon: <svg fill="none" height="16" viewBox="0 0 24 24" width="16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M8 3H7a2 2 0 00-2 2v5a2 2 0 01-2 2 2 2 0 012 2v5a2 2 0 002 2h1M16 3h1a2 2 0 012 2v5a2 2 0 002 2 2 2 0 00-2 2v5a2 2 0 01-2 2h-1" /></svg>,
@@ -324,7 +328,7 @@ function PlusMenu({
           {activePanel === "upload" && (
             <div className="p-14 flex flex-col gap-8">
               <div className="text-label-medium text-accent-black">Upload files</div>
-              <div className="text-body-small text-black-alpha-48">Attach CSV, JSON, or text files. They will be available to the agent via bash.</div>
+              <div className="text-body-small text-black-alpha-48">Attach documents (PDF, DOCX, XLSX), CSV, JSON, or text files. Documents are parsed to clean markdown; data/text files are available to the agent via bash.</div>
               <button
                 type="button"
                 className="w-full py-8 rounded-8 text-label-small bg-black-alpha-4 text-accent-black hover:bg-black-alpha-8 transition-all"

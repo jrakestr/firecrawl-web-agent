@@ -1,0 +1,59 @@
+{
+  "date": "2026-04-02",
+  "scrapedAt": "2026-07-19T07:15:42.964Z",
+  "gamesCount": 4,
+  "games": [
+    {
+      "awayTeam": "Minnesota Twins",
+      "homeTeam": "Kansas City Royals",
+      "awayPitcher": "Taj Bradley",
+      "homePitcher": "Cole Ragans",
+      "ml": "-156",
+      "spd": "-1.5",
+      "ou": "9.5",
+      "predictedWinner": "Kansas City Royals",
+      "predictedScore": "6.2-5.1",
+      "actualResult": "Minnesota Twins wins 5-1",
+      "pickResult": "IncorrectVs Spread Hit"
+    },
+    {
+      "awayTeam": "Toronto Blue Jays",
+      "homeTeam": "Chicago White Sox",
+      "awayPitcher": "TBD",
+      "homePitcher": "TBD",
+      "ml": "",
+      "spd": "",
+      "ou": "",
+      "predictedWinner": "",
+      "predictedScore": "",
+      "actualResult": "_Postponed_",
+      "pickResult": ""
+    },
+    {
+      "awayTeam": "Atlanta Braves",
+      "homeTeam": "Arizona Diamondbacks",
+      "awayPitcher": "Reynaldo Lopez",
+      "homePitcher": "Ryne Nelson",
+      "ml": "+102",
+      "spd": "+1.5",
+      "ou": "9.0",
+      "predictedWinner": "Arizona Diamondbacks",
+      "predictedScore": "4.1-3.9",
+      "actualResult": "Atlanta Braves wins 17-2",
+      "pickResult": "Incorrect"
+    },
+    {
+      "awayTeam": "New York Mets",
+      "homeTeam": "San Francisco Giants",
+      "awayPitcher": "David Peterson",
+      "homePitcher": "Robbie Ray",
+      "ml": "+104",
+      "spd": "+1.5",
+      "ou": "7.5",
+      "predictedWinner": "New York Mets",
+      "predictedScore": "5.9-5.5",
+      "actualResult": "San Francisco Giants wins 7-2",
+      "pickResult": "IncorrectVs Spread Hit"
+    }
+  ]
+}

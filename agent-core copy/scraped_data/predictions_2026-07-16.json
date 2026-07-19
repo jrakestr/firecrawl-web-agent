@@ -1,0 +1,20 @@
+{
+  "date": "2026-07-16",
+  "scrapedAt": "2026-07-19T07:21:42.832Z",
+  "gamesCount": 1,
+  "games": [
+    {
+      "awayTeam": "New York Mets",
+      "homeTeam": "Philadelphia Phillies",
+      "awayPitcher": "Christian Scott",
+      "homePitcher": "Aaron Nola",
+      "ml": "-131",
+      "spd": "-1.5",
+      "ou": "9.5",
+      "predictedWinner": "New York Mets",
+      "predictedScore": "6.1-5.6",
+      "actualResult": "New York Mets wins 4-1",
+      "pickResult": "CorrectVs Spread Hit"
+    }
+  ]
+}

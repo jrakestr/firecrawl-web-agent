@@ -1,0 +1,111 @@
+{
+  "date": "2026-03-27",
+  "scrapedAt": "2026-07-19T07:15:22.223Z",
+  "gamesCount": 8,
+  "games": [
+    {
+      "awayTeam": "New York Yankees",
+      "homeTeam": "San Francisco Giants",
+      "awayPitcher": "Cam Schlittler",
+      "homePitcher": "Robbie Ray",
+      "ml": "+109",
+      "spd": "+1.5",
+      "ou": "8.5",
+      "predictedWinner": "New York Yankees",
+      "predictedScore": "4.0-3.7",
+      "actualResult": "New York Yankees wins 3-0",
+      "pickResult": "Correct"
+    },
+    {
+      "awayTeam": "Athletics",
+      "homeTeam": "Toronto Blue Jays",
+      "awayPitcher": "Luis Severino",
+      "homePitcher": "Kevin Gausman",
+      "ml": "-181",
+      "spd": "-1.5",
+      "ou": "8.5",
+      "predictedWinner": "Athletics",
+      "predictedScore": "4.2-4.1",
+      "actualResult": "Toronto Blue Jays wins 3-2",
+      "pickResult": "IncorrectVs Spread Hit"
+    },
+    {
+      "awayTeam": "Colorado Rockies",
+      "homeTeam": "Miami Marlins",
+      "awayPitcher": "Kyle Freeland",
+      "homePitcher": "Sandy Alcantara",
+      "ml": "-194",
+      "spd": "-1.5",
+      "ou": "8.0",
+      "predictedWinner": "Miami Marlins",
+      "predictedScore": "4.2-4.0",
+      "actualResult": "Miami Marlins wins 2-1",
+      "pickResult": "CorrectMargin HitVs Spread Hit"
+    },
+    {
+      "awayTeam": "Kansas City Royals",
+      "homeTeam": "Atlanta Braves",
+      "awayPitcher": "Cole Ragans",
+      "homePitcher": "Chris Sale",
+      "ml": "-143",
+      "spd": "-1.5",
+      "ou": "7.5",
+      "predictedWinner": "Kansas City Royals",
+      "predictedScore": "4.2-4.1",
+      "actualResult": "Atlanta Braves wins 6-0",
+      "pickResult": "Incorrect"
+    },
+    {
+      "awayTeam": "Los Angeles Angels",
+      "homeTeam": "Houston Astros",
+      "awayPitcher": "Yusei Kikuchi",
+      "homePitcher": "Mike Burrows",
+      "ml": "-163",
+      "spd": "-1.5",
+      "ou": "8.5",
+      "predictedWinner": "Houston Astros",
+      "predictedScore": "4.2-4.2",
+      "actualResult": "Los Angeles Angels wins 6-2",
+      "pickResult": "IncorrectVs Spread Hit"
+    },
+    {
+      "awayTeam": "Detroit Tigers",
+      "homeTeam": "San Diego Padres",
+      "awayPitcher": "Framber Valdez",
+      "homePitcher": "Michael King",
+      "ml": "-126",
+      "spd": "+1.5",
+      "ou": "7.5",
+      "predictedWinner": "Detroit Tigers",
+      "predictedScore": "4.3-4.0",
+      "actualResult": "Detroit Tigers wins 5-2",
+      "pickResult": "Correct"
+    },
+    {
+      "awayTeam": "Cleveland Guardians",
+      "homeTeam": "Seattle Mariners",
+      "awayPitcher": "Gavin Williams",
+      "homePitcher": "George Kirby",
+      "ml": "-175",
+      "spd": "-1.5",
+      "ou": "7.0",
+      "predictedWinner": "Seattle Mariners",
+      "predictedScore": "3.5-3.3",
+      "actualResult": "Seattle Mariners wins 5-1",
+      "pickResult": "Correct"
+    },
+    {
+      "awayTeam": "Arizona Diamondbacks",
+      "homeTeam": "Los Angeles Dodgers",
+      "awayPitcher": "Ryne Nelson",
+      "homePitcher": "Emmet Sheehan",
+      "ml": "-252",
+      "spd": "-1.5",
+      "ou": "8.5",
+      "predictedWinner": "Los Angeles Dodgers",
+      "predictedScore": "5.4-4.0",
+      "actualResult": "Los Angeles Dodgers wins 5-4",
+      "pickResult": "CorrectMargin HitVs Spread Hit"
+    }
+  ]
+}
