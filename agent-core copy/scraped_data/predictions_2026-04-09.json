@@ -1,0 +1,85 @@
+{
+  "date": "2026-04-09",
+  "scrapedAt": "2026-07-19T07:16:14.841Z",
+  "gamesCount": 6,
+  "games": [
+    {
+      "awayTeam": "Cincinnati Reds",
+      "homeTeam": "Miami Marlins",
+      "awayPitcher": "Rhett Lowder",
+      "homePitcher": "Max Meyer",
+      "ml": "-122",
+      "spd": "+1.5",
+      "ou": "8.5",
+      "predictedWinner": "Miami Marlins",
+      "predictedScore": "3.3-2.9",
+      "actualResult": "Miami Marlins wins 8-1",
+      "pickResult": "CorrectVs Spread Hit"
+    },
+    {
+      "awayTeam": "Athletics",
+      "homeTeam": "New York Yankees",
+      "awayPitcher": "Jeffrey Springs",
+      "homePitcher": "Ryan Weathers",
+      "ml": "-207",
+      "spd": "-1.5",
+      "ou": "8.0",
+      "predictedWinner": "Athletics",
+      "predictedScore": "3.7-2.9",
+      "actualResult": "Athletics wins 1-0",
+      "pickResult": "CorrectMargin HitVs Spread Hit"
+    },
+    {
+      "awayTeam": "Detroit Tigers",
+      "homeTeam": "Minnesota Twins",
+      "awayPitcher": "Jack Flaherty",
+      "homePitcher": "Mick Abel",
+      "ml": "+113",
+      "spd": "+1.5",
+      "ou": "8.0",
+      "predictedWinner": "Detroit Tigers",
+      "predictedScore": "6.5-4.5",
+      "actualResult": "Minnesota Twins wins 3-1",
+      "pickResult": "Incorrect"
+    },
+    {
+      "awayTeam": "Arizona Diamondbacks",
+      "homeTeam": "New York Mets",
+      "awayPitcher": "Eduardo Rodriguez",
+      "homePitcher": "Nolan McLean",
+      "ml": "-163",
+      "spd": "-1.5",
+      "ou": "7.0",
+      "predictedWinner": "New York Mets",
+      "predictedScore": "2.8-2.3",
+      "actualResult": "Arizona Diamondbacks wins 7-1",
+      "pickResult": "IncorrectVs Spread Hit"
+    },
+    {
+      "awayTeam": "Chicago White Sox",
+      "homeTeam": "Kansas City Royals",
+      "awayPitcher": "Anthony Kay",
+      "homePitcher": "Seth Lugo",
+      "ml": "-186",
+      "spd": "-1.5",
+      "ou": "9.0",
+      "predictedWinner": "Kansas City Royals",
+      "predictedScore": "4.4-3.3",
+      "actualResult": "Chicago White Sox wins 2-0",
+      "pickResult": "IncorrectVs Spread Hit"
+    },
+    {
+      "awayTeam": "Colorado Rockies",
+      "homeTeam": "San Diego Padres",
+      "awayPitcher": "Chase Dollander",
+      "homePitcher": "Randy Vasquez",
+      "ml": "-199",
+      "spd": "-1.5",
+      "ou": "8.0",
+      "predictedWinner": "San Diego Padres",
+      "predictedScore": "3.5-2.6",
+      "actualResult": "San Diego Padres wins 7-3",
+      "pickResult": "Correct"
+    }
+  ]
+}

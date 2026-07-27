@@ -1,0 +1,111 @@
+{
+  "date": "2026-06-11",
+  "scrapedAt": "2026-07-19T07:19:49.371Z",
+  "gamesCount": 8,
+  "games": [
+    {
+      "awayTeam": "St. Louis Cardinals",
+      "homeTeam": "New York Mets",
+      "awayPitcher": "Hunter Dobbins",
+      "homePitcher": "Christian Scott",
+      "ml": "-148",
+      "spd": "-1.5",
+      "ou": "9.0",
+      "predictedWinner": "St. Louis Cardinals",
+      "predictedScore": "5.6-4.6",
+      "actualResult": "New York Mets wins 5-4",
+      "pickResult": "IncorrectVs Spread Hit"
+    },
+    {
+      "awayTeam": "Minnesota Twins",
+      "homeTeam": "Detroit Tigers",
+      "awayPitcher": "Zebby Matthews",
+      "homePitcher": "Keider Montero",
+      "ml": "-131",
+      "spd": "-1.5",
+      "ou": "9.5",
+      "predictedWinner": "Detroit Tigers",
+      "predictedScore": "4.6-4.5",
+      "actualResult": "Detroit Tigers wins 11-0",
+      "pickResult": "Correct"
+    },
+    {
+      "awayTeam": "Arizona Diamondbacks",
+      "homeTeam": "Miami Marlins",
+      "awayPitcher": "Merrill Kelly",
+      "homePitcher": "Tyler Phillips",
+      "ml": "-126",
+      "spd": "-1.5",
+      "ou": "8.5",
+      "predictedWinner": "Miami Marlins",
+      "predictedScore": "4.7-3.8",
+      "actualResult": "Miami Marlins wins 2-0",
+      "pickResult": "Correct"
+    },
+    {
+      "awayTeam": "Texas Rangers",
+      "homeTeam": "Kansas City Royals",
+      "awayPitcher": "Kumar Rocker",
+      "homePitcher": "Michael Wacha",
+      "ml": "-120",
+      "spd": "+1.5",
+      "ou": "10.5",
+      "predictedWinner": "Texas Rangers",
+      "predictedScore": "5.3-5.3",
+      "actualResult": "Texas Rangers wins 4-2",
+      "pickResult": "Correct"
+    },
+    {
+      "awayTeam": "Chicago Cubs",
+      "homeTeam": "Colorado Rockies",
+      "awayPitcher": "Edward Cabrera",
+      "homePitcher": "Ryan Feltner",
+      "ml": "+128",
+      "spd": "+1.5",
+      "ou": "11.0",
+      "predictedWinner": "Colorado Rockies",
+      "predictedScore": "5.9-5.7",
+      "actualResult": "Chicago Cubs wins 9-3",
+      "pickResult": "Incorrect"
+    },
+    {
+      "awayTeam": "Los Angeles Dodgers",
+      "homeTeam": "Pittsburgh Pirates",
+      "awayPitcher": "Justin Wrobleski",
+      "homePitcher": "Mitch Keller",
+      "ml": "+141",
+      "spd": "+1.5",
+      "ou": "9.5",
+      "predictedWinner": "Los Angeles Dodgers",
+      "predictedScore": "6.1-5.0",
+      "actualResult": "Los Angeles Dodgers wins 8-6",
+      "pickResult": "CorrectMargin Hit"
+    },
+    {
+      "awayTeam": "Seattle Mariners",
+      "homeTeam": "Baltimore Orioles",
+      "awayPitcher": "Bryan Woo",
+      "homePitcher": "Kyle Bradish",
+      "ml": "-102",
+      "spd": "+1.5",
+      "ou": "8.5",
+      "predictedWinner": "Seattle Mariners",
+      "predictedScore": "5.8-5.2",
+      "actualResult": "Baltimore Orioles wins 7-5",
+      "pickResult": "IncorrectVs Spread Hit"
+    },
+    {
+      "awayTeam": "Atlanta Braves",
+      "homeTeam": "Chicago White Sox",
+      "awayPitcher": "Martin Perez",
+      "homePitcher": "Anthony Kay",
+      "ml": "-102",
+      "spd": "+1.5",
+      "ou": "8.5",
+      "predictedWinner": "Atlanta Braves",
+      "predictedScore": "5.9-5.0",
+      "actualResult": "_Postponed_",
+      "pickResult": ""
+    }
+  ]
+}

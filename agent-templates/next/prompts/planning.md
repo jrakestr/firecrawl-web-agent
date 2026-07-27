@@ -1,5 +1,5 @@
 <planning_policy>
-IMPORTANT: You MUST output a mermaid flowchart BEFORE making any tool calls for research or data collection tasks. The only exception is simple formatting/export tasks (e.g. "format as JSON") — just do those directly.
+IMPORTANT: You MUST output a mermaid flowchart BEFORE making any tool calls for MULTI-STEP research or data collection tasks. Do NOT output a flowchart for simple single-step tasks — just do those directly. Single-step tasks include: formatting/export (e.g. "format as JSON"), reading or parsing an uploaded file (call the parse tool directly), reading a single text upload via bashExec, or scraping/parsing one specific URL or document the user named.
 
 ```mermaid
 graph TD

@@ -1,0 +1,85 @@
+{
+  "date": "2026-05-11",
+  "scrapedAt": "2026-07-19T07:18:11.740Z",
+  "gamesCount": 6,
+  "games": [
+    {
+      "awayTeam": "Los Angeles Angels",
+      "homeTeam": "Cleveland Guardians",
+      "awayPitcher": "Alek Manoah",
+      "homePitcher": "Joey Cantillo",
+      "ml": "-175",
+      "spd": "-1.5",
+      "ou": "7.5",
+      "predictedWinner": "Los Angeles Angels",
+      "predictedScore": "4.4-4.0",
+      "actualResult": "Cleveland Guardians wins 7-2",
+      "pickResult": "Incorrect"
+    },
+    {
+      "awayTeam": "New York Yankees",
+      "homeTeam": "Baltimore Orioles",
+      "awayPitcher": "Ryan Weathers",
+      "homePitcher": "Brandon Young",
+      "ml": "+129",
+      "spd": "+1.5",
+      "ou": "8.5",
+      "predictedWinner": "New York Yankees",
+      "predictedScore": "5.8-4.4",
+      "actualResult": "Baltimore Orioles wins 3-2",
+      "pickResult": "IncorrectVs Spread Hit"
+    },
+    {
+      "awayTeam": "Tampa Bay Rays",
+      "homeTeam": "Toronto Blue Jays",
+      "awayPitcher": "Drew Rasmussen",
+      "homePitcher": "Kevin Gausman",
+      "ml": "-131",
+      "spd": "-1.5",
+      "ou": "7.0",
+      "predictedWinner": "Toronto Blue Jays",
+      "predictedScore": "3.9-3.8",
+      "actualResult": "Tampa Bay Rays wins 8-5",
+      "pickResult": "IncorrectVs Spread Hit"
+    },
+    {
+      "awayTeam": "Arizona Diamondbacks",
+      "homeTeam": "Texas Rangers",
+      "awayPitcher": "Michael Soroka",
+      "homePitcher": "Cal Quantrill",
+      "ml": "-131",
+      "spd": "-1.5",
+      "ou": "7.5",
+      "predictedWinner": "Texas Rangers",
+      "predictedScore": "4.0-3.4",
+      "actualResult": "Arizona Diamondbacks wins 1-0",
+      "pickResult": "IncorrectVs Spread Hit"
+    },
+    {
+      "awayTeam": "Seattle Mariners",
+      "homeTeam": "Houston Astros",
+      "awayPitcher": "George Kirby",
+      "homePitcher": "Peter Lambert",
+      "ml": "+119",
+      "spd": "+1.5",
+      "ou": "9.0",
+      "predictedWinner": "Houston Astros",
+      "predictedScore": "5.0-3.8",
+      "actualResult": "Seattle Mariners wins 3-1",
+      "pickResult": "Incorrect"
+    },
+    {
+      "awayTeam": "San Francisco Giants",
+      "homeTeam": "Los Angeles Dodgers",
+      "awayPitcher": "Trevor McDonald",
+      "homePitcher": "Roki Sasaki",
+      "ml": "-194",
+      "spd": "-1.5",
+      "ou": "9.5",
+      "predictedWinner": "San Francisco Giants",
+      "predictedScore": "4.5-4.1",
+      "actualResult": "San Francisco Giants wins 9-3",
+      "pickResult": "CorrectVs Spread Hit"
+    }
+  ]
+}

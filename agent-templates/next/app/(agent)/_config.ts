@@ -12,9 +12,9 @@ export const config = {
   // ═══════════════════════════════════════════
   // Anthropic (Claude)
   // ═══════════════════════════════════════════
-  orchestrator: { provider: "anthropic", model: "claude-sonnet-4-6" } satisfies ModelRef,
-  subAgent:     { provider: "anthropic", model: "claude-sonnet-4-6" } satisfies ModelRef,
-  background:   { provider: "anthropic", model: "claude-haiku-4-5-20251001" } satisfies ModelRef,
+  // orchestrator: { provider: "anthropic", model: "claude-sonnet-4-6" } satisfies ModelRef,
+  // subAgent:     { provider: "anthropic", model: "claude-sonnet-4-6" } satisfies ModelRef,
+  // background:   { provider: "anthropic", model: "claude-haiku-4-5-20251001" } satisfies ModelRef,
 
   // ═══════════════════════════════════════════
   // Google (Gemini)
@@ -24,11 +24,11 @@ export const config = {
   // background:   { provider: "google", model: "gemini-3.1-flash-lite-preview" } satisfies ModelRef,
 
   // ═══════════════════════════════════════════
-  // OpenAI (GPT)
+  // OpenAI (GPT) — active: matches the OPENAI_API_KEY in .env.local
   // ═══════════════════════════════════════════
-  // orchestrator: { provider: "openai", model: "gpt-5.4" } satisfies ModelRef,
-  // subAgent:     { provider: "openai", model: "gpt-5.4" } satisfies ModelRef,
-  // background:   { provider: "openai", model: "o4-mini" } satisfies ModelRef,
+  orchestrator: { provider: "openai", model: "gpt-5.4" } satisfies ModelRef,
+  subAgent:     { provider: "openai", model: "gpt-5.4" } satisfies ModelRef,
+  background:   { provider: "openai", model: "o4-mini" } satisfies ModelRef,
 
   // ═══════════════════════════════════════════
   // Custom OpenAI-compatible
