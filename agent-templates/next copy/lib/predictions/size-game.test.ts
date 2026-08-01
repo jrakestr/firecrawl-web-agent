@@ -1,10 +1,14 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import {
+  boardCopyForMode,
+  ouStakeCopy,
   partitionBoard,
   sizeGame,
+  sizeOu,
   sizeWhatIf,
 } from "./size-game";
+import { formatAmericanOdds } from "./format";
 import type { MlbGame } from "./schema";
 
 const baseGame = (overrides: Partial<MlbGame> = {}): MlbGame => ({
@@ -57,6 +61,46 @@ describe("sizeGame", () => {
   });
 });
 
+describe("sizeOu", () => {
+  it("recommends Under and sets pSide = 1 - pOver", () => {
+    // Negative edge + negative intercept → pOver < 0.5
+    const ou = sizeOu(
+      baseGame({ predicted_total: 7.0, over_under_line: 9.5 }),
+      -0.5,
+      0.1,
+      0.5,
+      -110,
+    );
+    assert.ok(ou);
+    assert.equal(ou!.side, "Under");
+    assert.ok(ou!.pOver < 0.5);
+    assert.equal(ou!.pSide, 1 - ou!.pOver);
+  });
+
+  it("uses the passed OU moneyline in stake copy", () => {
+    const ou = sizeOu(
+      baseGame({ predicted_total: 11, over_under_line: 8 }),
+      -0.02,
+      0.2,
+      0.5,
+      -105,
+    );
+    assert.ok(ou);
+    assert.equal(ou!.moneyline, -105);
+    const copy = ouStakeCopy(ou!);
+    assert.match(copy.text, /-105/);
+    assert.doesNotMatch(copy.text, /-110/);
+  });
+});
+
+describe("formatAmericanOdds", () => {
+  it("adds a plus for positives", () => {
+    assert.equal(formatAmericanOdds(120), "+120");
+    assert.equal(formatAmericanOdds(-140), "-140");
+    assert.equal(formatAmericanOdds(null), "—");
+  });
+});
+
 describe("sizeWhatIf", () => {
   it("returns a stake for a +EV line", () => {
     const result = sizeWhatIf({
@@ -75,9 +119,12 @@ describe("sizeWhatIf", () => {
 });
 
 describe("partitionBoard", () => {
-  it("prefers today's sized games", () => {
+  it("prefers today's sized games with empty pending", () => {
     const board = partitionBoard(
-      [baseGame({ date: "2026-07-30" }), baseGame({ id: "2", date: "2026-07-29" })],
+      [
+        baseGame({ date: "2026-07-30" }),
+        baseGame({ id: "2", date: "2026-07-29" }),
+      ],
       "2026-07-30",
       0.07,
       0.11,
@@ -85,9 +132,10 @@ describe("partitionBoard", () => {
     );
     assert.equal(board.mode, "today");
     assert.equal(board.sized.length, 1);
+    assert.equal(board.pending.length, 0);
   });
 
-  it("falls back to pending when no predictions", () => {
+  it("falls back to pending with empty sized", () => {
     const board = partitionBoard(
       [
         baseGame({
@@ -102,5 +150,51 @@ describe("partitionBoard", () => {
     );
     assert.equal(board.mode, "pending");
     assert.equal(board.pending.length, 1);
+    assert.equal(board.sized.length, 0);
+  });
+
+  it("returns empty with both arrays empty", () => {
+    const board = partitionBoard([], "2026-07-30", 0.07, 0.11, 0.5);
+    assert.equal(board.mode, "empty");
+    assert.equal(board.sized.length, 0);
+    assert.equal(board.pending.length, 0);
+  });
+
+  it("recent mode keeps pending empty", () => {
+    const board = partitionBoard(
+      [baseGame({ date: "2026-07-29" })],
+      "2026-07-30",
+      0.07,
+      0.11,
+      0.5,
+    );
+    assert.equal(board.mode, "recent");
+    assert.ok(board.sized.length > 0);
+    assert.equal(board.pending.length, 0);
+  });
+});
+
+describe("boardCopyForMode", () => {
+  it("does not call pending tomorrow", () => {
+    const copy = boardCopyForMode("pending", {
+      sizedCount: 0,
+      pendingCount: 3,
+      multiplier: 0.5,
+    });
+    assert.equal(copy.title, "Sims still running");
+    assert.doesNotMatch(copy.title.toLowerCase(), /tomorrow/);
+    assert.doesNotMatch(copy.blurb.toLowerCase(), /tomorrow/);
+  });
+
+  it("covers every BoardMode", () => {
+    for (const mode of ["today", "recent", "pending", "empty"] as const) {
+      const copy = boardCopyForMode(mode, {
+        sizedCount: 2,
+        pendingCount: 1,
+        multiplier: 0.5,
+      });
+      assert.ok(copy.title.length > 0);
+      assert.ok(copy.blurb.length > 0);
+    }
   });
 });

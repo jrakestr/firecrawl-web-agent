@@ -82,16 +82,17 @@ export function DashboardShell({
               Size bets from calibrated sims
             </h1>
             <p className="max-w-2xl text-lg leading-relaxed text-white/60">
-              MyGameSim margins and totals run through logistic fits. ML{" "}
+              MyGameSim scores go through a fit, then Kelly sizes the stake.
+              Moneyline model{" "}
               <span className="font-mono text-base text-white/80">
-                β₀={b0.toFixed(4)} · β₁={b1.toFixed(4)}
+                {b0.toFixed(4)} / {b1.toFixed(4)}
               </span>
-              {" · "}O/U{" "}
+              {" · "}totals model{" "}
               <span className="font-mono text-base text-white/80">
-                β₀={ouB0.toFixed(4)} · β₁={ouB1.toFixed(4)}
+                {ouB0.toFixed(4)} / {ouB1.toFixed(4)}
               </span>
               {fittedLabel ? (
-                <span className="ml-2 text-white/45">· fitted {fittedLabel}</span>
+                <span className="ml-2 text-white/50">· fitted {fittedLabel}</span>
               ) : null}
             </p>
           </div>

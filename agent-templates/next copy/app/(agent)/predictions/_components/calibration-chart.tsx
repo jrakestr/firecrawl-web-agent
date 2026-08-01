@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import {
   CartesianGrid,
   Legend,
@@ -23,6 +23,7 @@ export function CalibrationChart({
   accuracy: number;
   skillScore: number;
 }) {
+  const reduceMotion = useReducedMotion();
   const data = bins.map((b) => ({
     name: b.binName.replace(" runs", ""),
     actual: Number((b.actualWinRate * 100).toFixed(1)),
@@ -30,29 +31,48 @@ export function CalibrationChart({
     count: b.count,
   }));
 
+  const values = data.flatMap((d) => [d.actual, d.model]).filter(Number.isFinite);
+  const minY = values.length ? Math.min(...values) : 40;
+  const maxY = values.length ? Math.max(...values) : 70;
+  const pad = 5;
+  const domain: [number, number] = [
+    Math.max(0, Math.floor(minY - pad)),
+    Math.min(100, Math.ceil(maxY + pad)),
+  ];
+
+  const skillLabel =
+    skillScore < 0.01
+      ? "Barely better than a coin flip"
+      : `Skill over coin flip ${(skillScore * 100).toFixed(2)}%`;
+
   return (
     <DoubleBezel>
       <div className="p-6 md:p-8">
         <div className="mb-8 space-y-3">
-          <Eyebrow>Calibration</Eyebrow>
+          <Eyebrow>Trust check</Eyebrow>
           <h2 className="text-2xl font-semibold text-white">
-            Did the model match reality?
+            Can you trust today's %?
           </h2>
-          <p className="text-base leading-relaxed text-white/55">
-            For each predicted-margin bucket, how often the favorite actually
-            won vs what the model said.
+          <p className="text-base leading-relaxed text-white/60">
+            Green is how often that pick won. Grey is what the model claimed.
+            Lines close means trust the board. Lines apart means size down or
+            skip.
           </p>
           <div className="flex flex-wrap gap-6 font-mono text-sm text-white/65">
-            <span>Pick rate {(accuracy * 100).toFixed(1)}%</span>
-            <span>Log-loss skill {(skillScore * 100).toFixed(2)}%</span>
+            <span>Correct pick rate {(accuracy * 100).toFixed(1)}%</span>
+            <span>{skillLabel}</span>
           </div>
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
+          initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+          whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
+          viewport={reduceMotion ? undefined : { once: true }}
+          transition={
+            reduceMotion
+              ? undefined
+              : { duration: 0.8, ease: [0.32, 0.72, 0, 1] }
+          }
           className="h-72 w-full"
         >
           <ResponsiveContainer width="100%" height="100%">
@@ -65,7 +85,7 @@ export function CalibrationChart({
                 tickLine={false}
               />
               <YAxis
-                domain={[40, 70]}
+                domain={domain}
                 tick={{ fill: "rgba(255,255,255,0.5)", fontSize: 12 }}
                 axisLine={false}
                 tickLine={false}
