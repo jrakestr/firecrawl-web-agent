@@ -1,0 +1,140 @@
+{
+  "scrapedAt": "2026-07-31T03:31:15.217Z",
+  "source": "alesig-personal-inbox",
+  "inbox": [],
+  "details": [
+    {
+      "cafNumber": "582868",
+      "readOnlyFields": [
+        {
+          "label": "CSR",
+          "value": "Clark, Mia"
+        },
+        {
+          "label": "Logged Date",
+          "value": "07/29/2026"
+        },
+        {
+          "label": "Logged Time",
+          "value": "02:37:00 PM"
+        },
+        {
+          "label": "Contact Type",
+          "value": "Phone"
+        },
+        {
+          "label": "Intaker Comments",
+          "value": "Pick up address:1729 East Ellis Drive, Tempe, AZ, USA\nDrop off address: 1521 West Dobbins Rd, Phoenix, AZ 85041\nThe ride was canceled.\nJCity: Tempe -AC"
+        },
+        {
+          "label": "Detail",
+          "value": "Complaint"
+        },
+        {
+          "label": "Priority",
+          "value": "Normal"
+        },
+        {
+          "label": "Selected Categories",
+          "value": "K / No Show"
+        },
+        {
+          "label": "Sub-Category",
+          "value": ""
+        },
+        {
+          "label": "Incident Date",
+          "value": "07/29/2026"
+        },
+        {
+          "label": "Scheduled Time",
+          "value": "01:00 PM"
+        },
+        {
+          "label": "Route#",
+          "value": "Paratransit - Paratransit/Dial A Ride"
+        },
+        {
+          "label": "Service Type",
+          "value": "Paratransit (ADA Service)"
+        },
+        {
+          "label": "Vehicle #",
+          "value": ""
+        },
+        {
+          "label": "Vehicle Type",
+          "value": "DAR Vehicle"
+        },
+        {
+          "label": "Location",
+          "value": "1729 East Ellis Drive, Tempe, AZ, USA"
+        },
+        {
+          "label": "City",
+          "value": "Tempe"
+        },
+        {
+          "label": "Operator Description",
+          "value": ""
+        },
+        {
+          "label": "Customer Comments",
+          "value": "They said the driver showed up at 1:20 pm and left at 1:27 pm. No one showed up here, and no one knocked on my back patio."
+        },
+        {
+          "label": "Customer Details (name/address/phones)",
+          "value": "Customer Name: Pettit, (Vicky) Victoria\nCustomerID:101913\nAddress: 1729 E. Ellis Dr , Tempe AZ 85282\n(H)(602)509-3739\n(W)(480)756-7792\n(M)(602)509-3739\n(Email)vickypettit@cox.net\n     *************"
+        },
+        {
+          "label": "Referred To",
+          "value": "Broker"
+        },
+        {
+          "label": "Department",
+          "value": "MJM Broker"
+        },
+        {
+          "label": "Carrier",
+          "value": "Carrier MJM"
+        },
+        {
+          "label": "Due Date",
+          "value": "08/12/2026"
+        },
+        {
+          "label": "Preferred Method of Response",
+          "value": "Phone"
+        },
+        {
+          "label": "Date (Action Taken)",
+          "value": ""
+        }
+      ],
+      "editableFields": [
+        {
+          "label": "Investigator Comments",
+          "type": "textarea",
+          "currentValue": "",
+          "options": []
+        },
+        {
+          "label": "Validity",
+          "type": "radio",
+          "currentValue": "Valid",
+          "options": [
+            "Valid",
+            "Invalid",
+            "Undetermined"
+          ]
+        },
+        {
+          "label": "Action Taken Response",
+          "type": "textarea",
+          "currentValue": "",
+          "options": []
+        }
+      ]
+    }
+  ]
+}
