@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  DEPRECATED local fallback. Primary schedule is GitHub Actions:
+    .github/workflows/mlb-predictions-scrape.yml
+
+  Only reinstall this LaunchAgent if you need an offline/local backup.
+  Unload: launchctl bootout gui/$(id -u)/com.valleymetro.mlb-predictions-scrape
+-->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.valleymetro.mlb-predictions-scrape</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/Users/home/Development/firecrawl-web-agent/agent-core copy/scripts/run_mlb_scraper_cron.sh</string>
+  </array>
+
+  <key>WorkingDirectory</key>
+  <string>/Users/home/Development/firecrawl-web-agent/agent-core copy</string>
+
+  <key>StartCalendarInterval</key>
+  <array>
+    <dict>
+      <key>Hour</key>
+      <integer>8</integer>
+      <key>Minute</key>
+      <integer>0</integer>
+    </dict>
+    <dict>
+      <key>Hour</key>
+      <integer>14</integer>
+      <key>Minute</key>
+      <integer>0</integer>
+    </dict>
+    <dict>
+      <key>Hour</key>
+      <integer>20</integer>
+      <key>Minute</key>
+      <integer>0</integer>
+    </dict>
+  </array>
+
+  <key>StandardOutPath</key>
+  <string>/Users/home/Development/firecrawl-web-agent/agent-core copy/scraped_data/mlb/launchd.out.log</string>
+
+  <key>StandardErrorPath</key>
+  <string>/Users/home/Development/firecrawl-web-agent/agent-core copy/scraped_data/mlb/launchd.err.log</string>
+
+  <key>RunAtLoad</key>
+  <false/>
+</dict>
+</plist>

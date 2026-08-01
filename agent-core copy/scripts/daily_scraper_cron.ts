@@ -2,9 +2,22 @@ import * as fs from "fs/promises";
 import * as path from "path";
 import { fileURLToPath } from "url";
 import postgres from "postgres";
+import {
+  MLB_PREDICTION_COLUMNS,
+  refreshTeamStatsSql,
+} from "../lib/mlb_predictions_schema.ts";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+const RATE_LIMIT_DELAY_MS = 1500;
+
+interface FirecrawlScrapeResponse {
+  success?: boolean;
+  data?: {
+    markdown?: string;
+  };
+}
 
 // Interface representing the raw prediction parsed from Firecrawl Markdown
 interface RawGame {
@@ -123,11 +136,13 @@ function cleanRawGames(games: RawGame[]): CleanedGame[] {
   for (const game of games) {
     if (!game.date) continue;
 
-    const dateObj = new Date(`${game.date}T12:00:00Z`);
-    const year = dateObj.getUTCFullYear();
-    const month = dateObj.getUTCMonth() + 1;
-    const day = dateObj.getUTCDate();
-    const dayOfWeek = dateObj.getUTCDay();
+    const [yearStr, monthStr, dayStr] = game.date.split("-");
+    const year = parseInt(yearStr, 10);
+    const month = parseInt(monthStr, 10);
+    const day = parseInt(dayStr, 10);
+    if (![year, month, day].every(Number.isFinite)) continue;
+    // UTC weekday without local timezone offset from Date string parsing
+    const dayOfWeek = new Date(Date.UTC(year, month - 1, day)).getUTCDay();
 
     const awayTeam = game.awayTeam?.trim() || "";
     const homeTeam = game.homeTeam?.trim() || "";
@@ -367,7 +382,7 @@ async function scrapeDate(date: string, apiKey: string): Promise<RawGame[]> {
     throw new Error(`Firecrawl API error: ${response.status} - ${text}`);
   }
 
-  const resJson = (await response.json()) as any;
+  const resJson = (await response.json()) as FirecrawlScrapeResponse;
   const markdown = resJson.data?.markdown || "";
   
   if (!markdown) {
@@ -382,12 +397,24 @@ async function scrapeDate(date: string, apiKey: string): Promise<RawGame[]> {
   return rawGames;
 }
 
-// Format date helper (YYYY-MM-DD)
+/** Calendar YYYY-MM-DD in America/New_York (works on UTC cloud runners). */
+function nyYmd(d = new Date()): string {
+  return d.toLocaleDateString("en-CA", { timeZone: "America/New_York" });
+}
+
+/** Shift a YYYY-MM-DD calendar date by whole days (no TZ drift). */
+function shiftYmd(ymd: string, deltaDays: number): string {
+  const [y, m, d] = ymd.split("-").map(Number);
+  const utc = new Date(Date.UTC(y, m - 1, d + deltaDays));
+  const yy = utc.getUTCFullYear();
+  const mm = String(utc.getUTCMonth() + 1).padStart(2, "0");
+  const dd = String(utc.getUTCDate()).padStart(2, "0");
+  return `${yy}-${mm}-${dd}`;
+}
+
+/** @deprecated Prefer nyYmd / shiftYmd — kept for --date validation only. */
 function formatDate(date: Date): string {
-  const y = date.getUTCFullYear();
-  const m = String(date.getUTCMonth() + 1).padStart(2, "0");
-  const d = String(date.getUTCDate()).padStart(2, "0");
-  return `${y}-${m}-${d}`;
+  return nyYmd(date);
 }
 
 async function run() {
@@ -399,10 +426,7 @@ async function run() {
 
   const dbUrl = process.env.SUPABASE_DATABASE_URL;
   if (!dbUrl) {
-    console.error("\nCRITICAL CONFIGURATION ERROR:");
-    console.error("SUPABASE_DATABASE_URL is missing in your environment/dotenv file.");
-    console.error("Please add the direct Postgres connection string to your .env file:");
-    console.error("SUPABASE_DATABASE_URL=postgresql://postgres:[PASSWORD]@db.gwvtpzjzrakggdbiwlyw.supabase.co:5432/postgres\n");
+    console.error("CRITICAL: SUPABASE_DATABASE_URL is not defined in the environment.");
     process.exit(1);
   }
 
@@ -423,15 +447,16 @@ async function run() {
       daysToScan = parseInt(args[daysArgIdx + 1], 10) || 2;
     }
 
-    // Get dates in Eastern Time context (since MLB schedules operate on Eastern Time)
-    const easternTime = new Date(new Date().toLocaleString("en-US", { timeZone: "America/New_York" }));
+    // MLB calendars are Eastern Time. Lookback + tomorrow's slate.
+    const todayNy = nyYmd();
     for (let i = 0; i < daysToScan; i++) {
-      const d = new Date(easternTime);
-      d.setDate(easternTime.getDate() - i);
-      datesToScrape.push(formatDate(d));
+      datesToScrape.push(shiftYmd(todayNy, -i));
     }
-    // Reverse so we scrape older date first
-    datesToScrape.reverse();
+    const tomorrowKey = shiftYmd(todayNy, 1);
+    if (!datesToScrape.includes(tomorrowKey)) {
+      datesToScrape.push(tomorrowKey);
+    }
+    datesToScrape.sort();
   }
 
   console.log(`Starting MLB Daily prediction pipeline for dates: ${datesToScrape.join(", ")}`);
@@ -455,79 +480,106 @@ async function run() {
         console.log(`Scraped ${rawGames.length} raw games. Parsing and cleaning...`);
         const cleanedGames = cleanRawGames(rawGames);
 
-        console.log(`Syncing ${cleanedGames.length} games to database...`);
-        let insertedCount = 0;
-
-        for (const game of cleanedGames) {
-          // SQL Upsert utilizing the unique constraint uq_game_date_teams
-          await sql`
-            insert into public.mlb_predictions (
-              date, year, month, day, day_of_week,
-              away_team, home_team, away_pitcher, home_pitcher,
-              away_moneyline, home_moneyline,
-              away_implied_probability, home_implied_probability,
-              away_spread, home_spread, over_under_line,
-              predicted_winner, predicted_away_score, predicted_home_score,
-              predicted_winner_score, predicted_loser_score, predicted_margin, predicted_total,
-              actual_away_score, actual_home_score, actual_winner_team, actual_winner,
-              actual_margin, actual_total_score,
-              winner_pick_correct, margin_pick_correct, spread_pick_correct,
-              updated_at
-            ) values (
-              ${game.date}, ${game.year}, ${game.month}, ${game.day}, ${game.dayOfWeek},
-              ${game.awayTeam}, ${game.homeTeam}, ${game.awayPitcher}, ${game.homePitcher},
-              ${game.awayMoneyline}, ${game.homeMoneyline},
-              ${game.awayImpliedProbability}, ${game.homeImpliedProbability},
-              ${game.awaySpread}, ${game.homeSpread}, ${game.overUnderLine},
-              ${game.predictedWinner}, ${game.predictedAwayScore}, ${game.predictedHomeScore},
-              ${game.predictedWinnerScore}, ${game.predictedLoserScore}, ${game.predictedMargin}, ${game.predictedTotal},
-              ${game.actualAwayScore}, ${game.actualHomeScore}, ${game.actualWinnerTeam}, ${game.actualWinner},
-              ${game.actualMargin}, ${game.actualTotalScore},
-              ${game.winnerPickCorrect}, ${game.marginPickCorrect}, ${game.spreadPickCorrect},
-              timezone('utc'::text, now())
-            )
-            on conflict (date, away_team, home_team)
-            do update set
-              away_pitcher = excluded.away_pitcher,
-              home_pitcher = excluded.home_pitcher,
-              away_moneyline = excluded.away_moneyline,
-              home_moneyline = excluded.home_moneyline,
-              away_implied_probability = excluded.away_implied_probability,
-              home_implied_probability = excluded.home_implied_probability,
-              away_spread = excluded.away_spread,
-              home_spread = excluded.home_spread,
-              over_under_line = excluded.over_under_line,
-              predicted_winner = excluded.predicted_winner,
-              predicted_away_score = excluded.predicted_away_score,
-              predicted_home_score = excluded.predicted_home_score,
-              predicted_winner_score = excluded.predicted_winner_score,
-              predicted_loser_score = excluded.predicted_loser_score,
-              predicted_margin = excluded.predicted_margin,
-              predicted_total = excluded.predicted_total,
-              actual_away_score = excluded.actual_away_score,
-              actual_home_score = excluded.actual_home_score,
-              actual_winner_team = excluded.actual_winner_team,
-              actual_winner = excluded.actual_winner,
-              actual_margin = excluded.actual_margin,
-              actual_total_score = excluded.actual_total_score,
-              winner_pick_correct = excluded.winner_pick_correct,
-              margin_pick_correct = excluded.margin_pick_correct,
-              spread_pick_correct = excluded.spread_pick_correct,
-              updated_at = timezone('utc'::text, now());
-          `;
-          insertedCount++;
+        if (cleanedGames.length === 0) {
+          console.log(`No cleaned games to sync for date: ${date}`);
+          continue;
         }
 
-        console.log(`Successfully upserted ${insertedCount} games for ${date} to Supabase!`);
+        console.log(`Syncing ${cleanedGames.length} games to database (bulk upsert)...`);
+        const dbRows = cleanedGames.map((game) => ({
+          date: game.date,
+          year: game.year,
+          month: game.month,
+          day: game.day,
+          day_of_week: game.dayOfWeek,
+          away_team: game.awayTeam,
+          home_team: game.homeTeam,
+          away_pitcher: game.awayPitcher,
+          home_pitcher: game.homePitcher,
+          away_moneyline: game.awayMoneyline,
+          home_moneyline: game.homeMoneyline,
+          away_implied_probability: game.awayImpliedProbability,
+          home_implied_probability: game.homeImpliedProbability,
+          away_spread: game.awaySpread,
+          home_spread: game.homeSpread,
+          over_under_line: game.overUnderLine,
+          predicted_winner: game.predictedWinner,
+          predicted_away_score: game.predictedAwayScore,
+          predicted_home_score: game.predictedHomeScore,
+          predicted_winner_score: game.predictedWinnerScore,
+          predicted_loser_score: game.predictedLoserScore,
+          predicted_margin: game.predictedMargin,
+          predicted_total: game.predictedTotal,
+          actual_away_score: game.actualAwayScore,
+          actual_home_score: game.actualHomeScore,
+          actual_winner_team: game.actualWinnerTeam,
+          actual_winner: game.actualWinner,
+          actual_margin: game.actualMargin,
+          actual_total_score: game.actualTotalScore,
+          winner_pick_correct: game.winnerPickCorrect,
+          margin_pick_correct: game.marginPickCorrect,
+          spread_pick_correct: game.spreadPickCorrect,
+        }));
+
+        // Prefer freshly scraped non-empty values; keep prior predictions when
+        // MyGameSim still shows "Collecting simulation runs..." (null/blank).
+        await sql`
+          insert into public.mlb_predictions ${sql(dbRows, ...MLB_PREDICTION_COLUMNS)}
+          on conflict (date, away_team, home_team)
+          do update set
+            away_pitcher = coalesce(nullif(excluded.away_pitcher, ''), mlb_predictions.away_pitcher),
+            home_pitcher = coalesce(nullif(excluded.home_pitcher, ''), mlb_predictions.home_pitcher),
+            away_moneyline = coalesce(excluded.away_moneyline, mlb_predictions.away_moneyline),
+            home_moneyline = coalesce(excluded.home_moneyline, mlb_predictions.home_moneyline),
+            away_implied_probability = coalesce(excluded.away_implied_probability, mlb_predictions.away_implied_probability),
+            home_implied_probability = coalesce(excluded.home_implied_probability, mlb_predictions.home_implied_probability),
+            away_spread = coalesce(excluded.away_spread, mlb_predictions.away_spread),
+            home_spread = coalesce(excluded.home_spread, mlb_predictions.home_spread),
+            over_under_line = coalesce(excluded.over_under_line, mlb_predictions.over_under_line),
+            predicted_winner = coalesce(nullif(excluded.predicted_winner, ''), mlb_predictions.predicted_winner),
+            predicted_away_score = coalesce(excluded.predicted_away_score, mlb_predictions.predicted_away_score),
+            predicted_home_score = coalesce(excluded.predicted_home_score, mlb_predictions.predicted_home_score),
+            predicted_winner_score = coalesce(excluded.predicted_winner_score, mlb_predictions.predicted_winner_score),
+            predicted_loser_score = coalesce(excluded.predicted_loser_score, mlb_predictions.predicted_loser_score),
+            predicted_margin = coalesce(excluded.predicted_margin, mlb_predictions.predicted_margin),
+            predicted_total = coalesce(excluded.predicted_total, mlb_predictions.predicted_total),
+            actual_away_score = coalesce(excluded.actual_away_score, mlb_predictions.actual_away_score),
+            actual_home_score = coalesce(excluded.actual_home_score, mlb_predictions.actual_home_score),
+            actual_winner_team = coalesce(nullif(excluded.actual_winner_team, ''), mlb_predictions.actual_winner_team),
+            actual_winner = coalesce(excluded.actual_winner, mlb_predictions.actual_winner),
+            actual_margin = coalesce(excluded.actual_margin, mlb_predictions.actual_margin),
+            actual_total_score = coalesce(excluded.actual_total_score, mlb_predictions.actual_total_score),
+            winner_pick_correct = coalesce(excluded.winner_pick_correct, mlb_predictions.winner_pick_correct),
+            margin_pick_correct = coalesce(excluded.margin_pick_correct, mlb_predictions.margin_pick_correct),
+            spread_pick_correct = coalesce(excluded.spread_pick_correct, mlb_predictions.spread_pick_correct),
+            updated_at = timezone('utc'::text, now())
+        `;
+
+        console.log(
+          `Successfully upserted ${cleanedGames.length} games for ${date} to Supabase!`,
+        );
       } catch (err: any) {
         console.error(`Error processing date ${date}:`, err.message || err);
       }
-      
+
       // Rate limit polite delay between dates
       if (datesToScrape.indexOf(date) < datesToScrape.length - 1) {
-        console.log("Sleeping for 1.5 seconds to respect rate limits...");
-        await new Promise((resolve) => setTimeout(resolve, 1500));
+        console.log(
+          `Sleeping for ${RATE_LIMIT_DELAY_MS}ms to respect rate limits...`,
+        );
+        await new Promise((resolve) => setTimeout(resolve, RATE_LIMIT_DELAY_MS));
       }
+    }
+
+    console.log("Refreshing team statistics materialized view...");
+    try {
+      const mode = await refreshTeamStatsSql(sql);
+      console.log(`team_stats refreshed (${mode}).`);
+    } catch (refreshErr: any) {
+      console.error(
+        "Failed to refresh team_stats:",
+        refreshErr?.message || refreshErr,
+      );
     }
   } finally {
     // Always close the database connection cleanly

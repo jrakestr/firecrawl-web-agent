@@ -61,7 +61,11 @@
     "example:structured": "tsx examples/2-structured-output.ts",
     "example:parallel": "tsx examples/3-parallel-subagents.ts",
     "example:skills": "tsx examples/4-with-skills.ts",
-    "example:stream": "tsx examples/5-streaming.ts"
+    "example:stream": "tsx examples/5-streaming.ts",
+    "caf:inbox-cron": "tsx scripts/caf_inbox_cron.ts",
+    "caf:inbox-cron:dry": "tsx scripts/caf_inbox_cron.ts --dry-run",
+    "mlb:scrape": "node --env-file=.env --import tsx scripts/daily_scraper_cron.ts",
+    "mlb:scrape:cron": "./scripts/run_mlb_scraper_cron.sh"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.110.7",

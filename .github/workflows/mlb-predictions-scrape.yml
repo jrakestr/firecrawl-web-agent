@@ -1,0 +1,59 @@
+name: MLB predictions scrape
+
+# Cloud replacement for local launchd com.valleymetro.mlb-predictions-scrape.
+# Phoenix (America/Phoenix, UTC-7 year-round):
+#   08:00 → 15:00 UTC
+#   14:00 → 21:00 UTC
+#   20:00 → 03:00 UTC (next calendar day)
+
+on:
+  schedule:
+    - cron: "0 15 * * *"
+    - cron: "0 21 * * *"
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "Lookback days (script also adds tomorrow NY)"
+        required: false
+        default: "3"
+
+concurrency:
+  group: mlb-predictions-scrape
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    defaults:
+      run:
+        working-directory: agent-core copy
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: pnpm
+          cache-dependency-path: agent-core copy/pnpm-lock.yaml
+
+      - name: Install deps
+        run: pnpm install --frozen-lockfile
+
+      - name: Scrape MyGameSim → Supabase
+        env:
+          FIRECRAWL_API_KEY: ${{ secrets.FIRECRAWL_API_KEY }}
+          SUPABASE_DATABASE_URL: ${{ secrets.SUPABASE_DATABASE_URL }}
+        run: |
+          DAYS="${{ github.event.inputs.days }}"
+          DAYS="${DAYS:-3}"
+          node --import tsx scripts/daily_scraper_cron.ts --days "$DAYS"
