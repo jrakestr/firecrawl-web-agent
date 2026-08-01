@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  CAF Personal Inbox pull — twice daily (08:00 and 14:00 local / America/Phoenix).
+
+  Install:
+    cp "agent-core copy/scripts/com.valleymetro.caf-inbox-pull.plist" ~/Library/LaunchAgents/
+    # Edit ProgramArguments path if this machine's repo path differs.
+    launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.valleymetro.caf-inbox-pull.plist
+
+  Manual kick:
+    launchctl kickstart -k gui/$(id -u)/com.valleymetro.caf-inbox-pull
+
+  Unload:
+    launchctl bootout gui/$(id -u)/com.valleymetro.caf-inbox-pull
+
+  Requires Mac awake/online; Alesig live session cannot run in the cloud.
+  Add RESEND_API_KEY + CAF_NOTIFY_TO to agent-core copy/.env for email digests.
+-->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.valleymetro.caf-inbox-pull</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/Users/home/Development/firecrawl-web-agent/agent-core copy/scripts/run_caf_inbox_cron.sh</string>
+  </array>
+
+  <key>WorkingDirectory</key>
+  <string>/Users/home/Development/firecrawl-web-agent/agent-core copy</string>
+
+  <key>StartCalendarInterval</key>
+  <array>
+    <dict>
+      <key>Hour</key>
+      <integer>8</integer>
+      <key>Minute</key>
+      <integer>0</integer>
+    </dict>
+    <dict>
+      <key>Hour</key>
+      <integer>14</integer>
+      <key>Minute</key>
+      <integer>0</integer>
+    </dict>
+  </array>
+
+  <key>StandardOutPath</key>
+  <string>/Users/home/Development/firecrawl-web-agent/agent-core copy/scraped_data/caf/launchd.out.log</string>
+
+  <key>StandardErrorPath</key>
+  <string>/Users/home/Development/firecrawl-web-agent/agent-core copy/scraped_data/caf/launchd.err.log</string>
+
+  <key>RunAtLoad</key>
+  <false/>
+</dict>
+</plist>

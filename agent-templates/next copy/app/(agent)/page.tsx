@@ -56,7 +56,7 @@ const MODEL_PREFERENCE_STORAGE_KEY = "firecrawl-agent:last-model";
 
 type CachedModelPreference = Pick<ModelConfig, "provider" | "model" | "baseURL" | "bin">;
 
-const PROVIDER_KEY_IDS: Partial<Record<ModelConfig["provider"], string>> = {
+const PROVIDER_KEY_IDS: Partial<Record<string, string>> = {
   firecrawl: "firecrawl",
   anthropic: "anthropic",
   openai: "openai",

@@ -6,6 +6,8 @@ coverage/
 .env
 .env.local
 .env.*.local
+.alesig-session.json
+.rideco-ops-session.json
 .firecrawl/
 data/
 tmp/

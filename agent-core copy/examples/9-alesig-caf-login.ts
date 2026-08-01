@@ -1,6 +1,10 @@
 /**
- * 9. Alesig CAF (CAS) Login — interact() with a named profile so the browser
- *    session (cookies, local storage) persists across runs.
+ * 9. Alesig CAF (CAS) Login — agent-core interact helper.
+ *
+ * Prefer the durable bootstrap (keeps scrape session open — profile reopen
+ * does NOT retain Alesig auth):
+ *   node --env-file=.env --import tsx examples/9b-alesig-caf-login-persist.ts
+ *   node --env-file=.env --import tsx examples/9b-alesig-caf-login-persist.ts --check
  *
  *   Site: https://vmcrms.alesig.com/ (Customer Assistance System)
  *

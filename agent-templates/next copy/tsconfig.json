@@ -42,6 +42,7 @@
     "node_modules",
     "agent-core/tsup.config.ts",
     "agent-core/**/*.test.ts",
-    "agent-core/examples"
+    "agent-core/examples",
+    "rocket"
   ]
 }

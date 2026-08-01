@@ -1,0 +1,721 @@
+{
+  "scrapedAt": "2026-07-31T03:31:15.321Z",
+  "source": "alesig-personal-inbox",
+  "inbox": [],
+  "details": [
+    {
+      "cafNumber": "582889",
+      "readOnlyFields": [
+        {
+          "label": "CSR",
+          "value": "Ramirez, Jennifer"
+        },
+        {
+          "label": "Logged Date",
+          "value": "07/29/2026"
+        },
+        {
+          "label": "Logged Time",
+          "value": "05:34:00 PM"
+        },
+        {
+          "label": "Contact Type",
+          "value": "Phone"
+        },
+        {
+          "label": "Call Date",
+          "value": "07/29/2026"
+        },
+        {
+          "label": "Call Time",
+          "value": "5:34 PM"
+        },
+        {
+          "label": "Intaker Comments",
+          "value": "*paratransit reservations complaint\nTempe - FS"
+        },
+        {
+          "label": "Detail",
+          "value": "Complaint"
+        },
+        {
+          "label": "Priority",
+          "value": "Normal"
+        },
+        {
+          "label": "Primary Category",
+          "value": ""
+        },
+        {
+          "label": "Sub-Category",
+          "value": ""
+        },
+        {
+          "label": "Selected Categories",
+          "value": "K / Reservations"
+        },
+        {
+          "label": "Incident Date",
+          "value": "07/29/2026"
+        },
+        {
+          "label": "Scheduled Time",
+          "value": "02:00 PM"
+        },
+        {
+          "label": "Actual/Approximate",
+          "value": "Approximate"
+        },
+        {
+          "label": "Route#",
+          "value": "Paratransit - Paratransit/Dial A Ride"
+        },
+        {
+          "label": "Service Type",
+          "value": "Paratransit (ADA Service)"
+        },
+        {
+          "label": "Direction",
+          "value": "N/A"
+        },
+        {
+          "label": "Vehicle #",
+          "value": ""
+        },
+        {
+          "label": "Vehicle Type",
+          "value": "DAR Vehicle"
+        },
+        {
+          "label": "Location",
+          "value": ""
+        },
+        {
+          "label": "City",
+          "value": "Tempe"
+        },
+        {
+          "label": "Block #",
+          "value": ""
+        },
+        {
+          "label": "Employee Badge No.",
+          "value": ""
+        },
+        {
+          "label": "Operator Description",
+          "value": "Male, Name: Matthew "
+        },
+        {
+          "label": "Customer Comments",
+          "value": "I spoke with him several times, and I believe he gave me a lot of incorrect info. He told me he is a supervisor, and I don't believe he is. He told me I am not allowed to make a will-call reservation if I have a pet. I have previously made a reservation with my cat in a carrier and did not have an issue. He also told me they could not pick me up through the back side of my house. They could not drive the vehicle to the front of my house since I live in a townhouse. He told me he contacted Userv to pick me up and they never picked me up. Another driver showed up that was supposed to pick me up 3hours."
+        },
+        {
+          "label": "Customer Details (name/address/phones)",
+          "value": "Customer Name: Pettit, (Vicky) Victoria\nCustomerID:101913\nAddress: 1729 E. Ellis Dr , Tempe AZ 85282\n(H)(602)509-3739\n(W)(480)756-7792\n(M)(602)509-3739\n(Email)vickypettit@cox.net\n     *************"
+        },
+        {
+          "label": "Reported By",
+          "value": ""
+        },
+        {
+          "label": "Relevant Employee Name",
+          "value": ""
+        },
+        {
+          "label": "Referred To",
+          "value": "Broker"
+        },
+        {
+          "label": "CC",
+          "value": "ebertr,fostch,hickya,perrmo,pinata,sandir,santal,wadekr,wilsto"
+        },
+        {
+          "label": "Department",
+          "value": "MJM Broker"
+        },
+        {
+          "label": "Carrier",
+          "value": "Carrier MJM"
+        },
+        {
+          "label": "Acknowledgement Date",
+          "value": ""
+        },
+        {
+          "label": "Due Date",
+          "value": "08/12/2026"
+        },
+        {
+          "label": "Employee Name",
+          "value": ""
+        },
+        {
+          "label": "ID #",
+          "value": ""
+        },
+        {
+          "label": "Supervisor",
+          "value": ""
+        },
+        {
+          "label": "Date (Investigator Response)",
+          "value": ""
+        },
+        {
+          "label": "Date (Action Taken)",
+          "value": ""
+        },
+        {
+          "label": "Preferred Method of Response",
+          "value": "Phone"
+        },
+        {
+          "label": "Date (Response To Customer)",
+          "value": ""
+        },
+        {
+          "label": "Preferred Time of Day",
+          "value": "N/A"
+        }
+      ],
+      "editableFields": [
+        {
+          "label": "Witness Indicator",
+          "type": "checkbox",
+          "currentValue": "false",
+          "options": []
+        },
+        {
+          "label": "Investigator Comments",
+          "type": "textarea",
+          "currentValue": "",
+          "options": []
+        },
+        {
+          "label": "Validity",
+          "type": "radio",
+          "currentValue": "Valid",
+          "options": [
+            "Valid",
+            "Invalid",
+            "Undetermined"
+          ]
+        },
+        {
+          "label": "Action Taken Response",
+          "type": "textarea",
+          "currentValue": "",
+          "options": []
+        },
+        {
+          "label": "Add New Response",
+          "type": "select",
+          "currentValue": "N/A",
+          "options": [
+            "N/A",
+            "Email/Online",
+            "Phone",
+            "Letter",
+            "Fax"
+          ]
+        }
+      ]
+    },
+    {
+      "cafNumber": "582883",
+      "readOnlyFields": [
+        {
+          "label": "CSR",
+          "value": "Clark, Mia"
+        },
+        {
+          "label": "Logged Date",
+          "value": "07/29/2026"
+        },
+        {
+          "label": "Logged Time",
+          "value": "04:57:00 PM"
+        },
+        {
+          "label": "Contact Type",
+          "value": "Phone"
+        },
+        {
+          "label": "Call Date",
+          "value": "07/29/2026"
+        },
+        {
+          "label": "Call Time",
+          "value": "4:57 PM"
+        },
+        {
+          "label": "Intaker Comments",
+          "value": "6236955801\nRE: Elizabeth Ahlman #182526\nJCity: Peoria -AC"
+        },
+        {
+          "label": "Detail",
+          "value": "Commendation"
+        },
+        {
+          "label": "Priority",
+          "value": "Normal"
+        },
+        {
+          "label": "Primary Category",
+          "value": "N/A"
+        },
+        {
+          "label": "Sub-Category",
+          "value": ""
+        },
+        {
+          "label": "Selected Categories",
+          "value": "A / Kudos"
+        },
+        {
+          "label": "Incident Date",
+          "value": "07/29/2026"
+        },
+        {
+          "label": "Scheduled Time",
+          "value": "04:45 PM"
+        },
+        {
+          "label": "Route#",
+          "value": "Paratransit - Paratransit/Dial A Ride"
+        },
+        {
+          "label": "Service Type",
+          "value": "Paratransit (ADA Service)"
+        },
+        {
+          "label": "Direction",
+          "value": "N/A"
+        },
+        {
+          "label": "Vehicle #",
+          "value": ""
+        },
+        {
+          "label": "Vehicle Type",
+          "value": "N/A"
+        },
+        {
+          "label": "Location",
+          "value": "Reservations Call Center"
+        },
+        {
+          "label": "City",
+          "value": "Phoenix"
+        },
+        {
+          "label": "Block #",
+          "value": ""
+        },
+        {
+          "label": "Employee Badge No.",
+          "value": ""
+        },
+        {
+          "label": "Operator Description",
+          "value": "The agent's name was Michael."
+        },
+        {
+          "label": "Customer Comments",
+          "value": "I want to give kudos to Michael!!!! He answered all my questions, and they have a very high call volume. I appreciate him!!!!!"
+        },
+        {
+          "label": "Customer Details",
+          "value": "Customer Name: Ahlman, Patti\nAddress:  ,  AZ \n(H)6236955801\n     *************"
+        },
+        {
+          "label": "Reported By",
+          "value": ""
+        },
+        {
+          "label": "Relevant Employee Name",
+          "value": ""
+        },
+        {
+          "label": "Referred To",
+          "value": "Broker"
+        },
+        {
+          "label": "CC",
+          "value": "ebertr,fostch,hickya,perrmo,pinata,sandir,santal,wadekr,wilsto"
+        },
+        {
+          "label": "Department",
+          "value": "MJM Broker"
+        },
+        {
+          "label": "Carrier",
+          "value": "Carrier MJM"
+        },
+        {
+          "label": "Acknowledgement Date",
+          "value": ""
+        },
+        {
+          "label": "Due Date",
+          "value": "08/12/2026"
+        },
+        {
+          "label": "Employee Name",
+          "value": ""
+        },
+        {
+          "label": "ID #",
+          "value": ""
+        },
+        {
+          "label": "Supervisor",
+          "value": ""
+        },
+        {
+          "label": "Date (Investigator Response)",
+          "value": ""
+        },
+        {
+          "label": "Date (Action Taken)",
+          "value": ""
+        },
+        {
+          "label": "Preferred Method of Response",
+          "value": "N/A"
+        },
+        {
+          "label": "Date (Response To Customer)",
+          "value": ""
+        },
+        {
+          "label": "Preferred Time of Day",
+          "value": "N/A"
+        }
+      ],
+      "editableFields": [
+        {
+          "label": "Witness Indicator",
+          "type": "checkbox",
+          "currentValue": "false",
+          "options": []
+        },
+        {
+          "label": "Investigator Comments",
+          "type": "textarea",
+          "currentValue": "",
+          "options": []
+        },
+        {
+          "label": "Validity",
+          "type": "radio",
+          "currentValue": "Valid",
+          "options": [
+            "Valid",
+            "Invalid",
+            "Undetermined"
+          ]
+        },
+        {
+          "label": "Action Taken Response",
+          "type": "textarea",
+          "currentValue": "",
+          "options": []
+        },
+        {
+          "label": "Add New Response",
+          "type": "select",
+          "currentValue": "N/A",
+          "options": [
+            "N/A",
+            "Email/Online",
+            "Phone",
+            "Letter",
+            "Fax"
+          ]
+        }
+      ]
+    },
+    {
+      "cafNumber": "582872",
+      "readOnlyFields": [
+        {
+          "label": "Logged Date",
+          "value": "07/29/2026"
+        },
+        {
+          "label": "Logged Time",
+          "value": "03:28:00 PM"
+        },
+        {
+          "label": "Contact Type",
+          "value": "Phone"
+        },
+        {
+          "label": "Intaker Comments",
+          "value": "Kudos\nThe report is for Paratransit.\n602-716-2200\nJCity: Glendale- AC"
+        },
+        {
+          "label": "Detail",
+          "value": "Commendation"
+        },
+        {
+          "label": "Priority",
+          "value": "Normal"
+        },
+        {
+          "label": "Selected Categories",
+          "value": "A / Kudos"
+        },
+        {
+          "label": "Sub-Category",
+          "value": ""
+        },
+        {
+          "label": "Route#",
+          "value": "Paratransit - Paratransit/Dial A Ride"
+        },
+        {
+          "label": "Service Type",
+          "value": "Paratransit (ADA Service)"
+        },
+        {
+          "label": "Vehicle #",
+          "value": ""
+        },
+        {
+          "label": "Vehicle Type",
+          "value": "N/A"
+        },
+        {
+          "label": "Location",
+          "value": "Reservations Call Center"
+        },
+        {
+          "label": "City",
+          "value": "Phoenix"
+        },
+        {
+          "label": "Operator Description",
+          "value": "CSR named Michael K. "
+        },
+        {
+          "label": "Customer Comments",
+          "value": "Michael was extremely helpful and patient while I was booking my rides."
+        },
+        {
+          "label": "Department",
+          "value": "MJM Broker"
+        },
+        {
+          "label": "Carrier",
+          "value": "Carrier MJM"
+        },
+        {
+          "label": "Preferred Method of Response",
+          "value": "N/A"
+        }
+      ],
+      "editableFields": [
+        {
+          "label": "CSR",
+          "type": "text",
+          "currentValue": "Inabinet, Christopher",
+          "options": []
+        },
+        {
+          "label": "Incident Date",
+          "type": "date",
+          "currentValue": "07/29/2026",
+          "options": []
+        },
+        {
+          "label": "Scheduled Time",
+          "type": "text",
+          "currentValue": "03:27 PM",
+          "options": []
+        },
+        {
+          "label": "Customer Details (name/address/phones)",
+          "type": "textarea",
+          "currentValue": "Customer Name: Saldin, Robert\nAddress: 5205 W Thunderbird Rd , Glendale AZ 85306\n(H)(602)877-4997\n(W)(602)441-2288 (Home)\n(M)(602)761-8258 {Roberts Cell}\n(F)(623)277-7132 {Marlas-wife-cell}\n     *************",
+          "options": []
+        },
+        {
+          "label": "Referred To",
+          "type": "text",
+          "currentValue": "Broker",
+          "options": []
+        },
+        {
+          "label": "Due Date",
+          "type": "date",
+          "currentValue": "08/12/2026",
+          "options": []
+        },
+        {
+          "label": "Investigator Comments",
+          "type": "textarea",
+          "currentValue": "",
+          "options": []
+        },
+        {
+          "label": "Validity",
+          "type": "radio",
+          "currentValue": "Valid",
+          "options": [
+            "Valid",
+            "Invalid",
+            "Undetermined"
+          ]
+        },
+        {
+          "label": "Action Taken Response",
+          "type": "textarea",
+          "currentValue": "",
+          "options": []
+        },
+        {
+          "label": "Date (Action Taken)",
+          "type": "date",
+          "currentValue": "",
+          "options": []
+        }
+      ]
+    },
+    {
+      "cafNumber": "582868",
+      "readOnlyFields": [
+        {
+          "label": "CSR",
+          "value": "Clark, Mia"
+        },
+        {
+          "label": "Logged Date",
+          "value": "07/29/2026"
+        },
+        {
+          "label": "Logged Time",
+          "value": "02:37:00 PM"
+        },
+        {
+          "label": "Contact Type",
+          "value": "Phone"
+        },
+        {
+          "label": "Intaker Comments",
+          "value": "Pick up address:1729 East Ellis Drive, Tempe, AZ, USA\nDrop off address: 1521 West Dobbins Rd, Phoenix, AZ 85041\nThe ride was canceled.\nJCity: Tempe -AC"
+        },
+        {
+          "label": "Detail",
+          "value": "Complaint"
+        },
+        {
+          "label": "Priority",
+          "value": "Normal"
+        },
+        {
+          "label": "Selected Categories",
+          "value": "K / No Show"
+        },
+        {
+          "label": "Sub-Category",
+          "value": ""
+        },
+        {
+          "label": "Incident Date",
+          "value": "07/29/2026"
+        },
+        {
+          "label": "Scheduled Time",
+          "value": "01:00 PM"
+        },
+        {
+          "label": "Route#",
+          "value": "Paratransit - Paratransit/Dial A Ride"
+        },
+        {
+          "label": "Service Type",
+          "value": "Paratransit (ADA Service)"
+        },
+        {
+          "label": "Vehicle #",
+          "value": ""
+        },
+        {
+          "label": "Vehicle Type",
+          "value": "DAR Vehicle"
+        },
+        {
+          "label": "Location",
+          "value": "1729 East Ellis Drive, Tempe, AZ, USA"
+        },
+        {
+          "label": "City",
+          "value": "Tempe"
+        },
+        {
+          "label": "Operator Description",
+          "value": ""
+        },
+        {
+          "label": "Customer Comments",
+          "value": "They said the driver showed up at 1:20 pm and left at 1:27 pm. No one showed up here, and no one knocked on my back patio."
+        },
+        {
+          "label": "Customer Details (name/address/phones)",
+          "value": "Customer Name: Pettit, (Vicky) Victoria\nCustomerID:101913\nAddress: 1729 E. Ellis Dr , Tempe AZ 85282\n(H)(602)509-3739\n(W)(480)756-7792\n(M)(602)509-3739\n(Email)vickypettit@cox.net\n     *************"
+        },
+        {
+          "label": "Referred To",
+          "value": "Broker"
+        },
+        {
+          "label": "Department",
+          "value": "MJM Broker"
+        },
+        {
+          "label": "Carrier",
+          "value": "Carrier MJM"
+        },
+        {
+          "label": "Due Date",
+          "value": "08/12/2026"
+        },
+        {
+          "label": "Preferred Method of Response",
+          "value": "Phone"
+        },
+        {
+          "label": "Date (Action Taken)",
+          "value": ""
+        }
+      ],
+      "editableFields": [
+        {
+          "label": "Investigator Comments",
+          "type": "textarea",
+          "currentValue": "",
+          "options": []
+        },
+        {
+          "label": "Validity",
+          "type": "radio",
+          "currentValue": "Valid",
+          "options": [
+            "Valid",
+            "Invalid",
+            "Undetermined"
+          ]
+        },
+        {
+          "label": "Action Taken Response",
+          "type": "textarea",
+          "currentValue": "",
+          "options": []
+        }
+      ]
+    }
+  ]
+}
