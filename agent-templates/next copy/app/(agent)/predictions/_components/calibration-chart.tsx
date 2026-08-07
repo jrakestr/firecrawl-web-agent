@@ -65,13 +65,13 @@ export function CalibrationChart({
         </div>
 
         <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+          initial={reduceMotion ? false : { opacity: 1, y: 12 }}
           whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
           viewport={reduceMotion ? undefined : { once: true }}
           transition={
             reduceMotion
               ? undefined
-              : { duration: 0.8, ease: [0.32, 0.72, 0, 1] }
+              : { duration: 0.5, ease: [0.32, 0.72, 0, 1] }
           }
           className="h-72 w-full"
         >

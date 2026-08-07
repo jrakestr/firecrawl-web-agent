@@ -77,7 +77,7 @@ export function StandingsTable({ teams }: { teams: TeamStatsRow[] }) {
               {sorted.map((t, i) => (
                 <motion.tr
                   key={t.team_name}
-                  initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+                  initial={reduceMotion ? false : { opacity: 1, y: 8 }}
                   whileInView={
                     reduceMotion ? undefined : { opacity: 1, y: 0 }
                   }

@@ -122,6 +122,8 @@ function OverUnderBlock({ ou }: { ou: SizedOu }) {
 
 function useCardMotion(index: number) {
   const reduceMotion = useReducedMotion();
+  // Never start at opacity 0. Mobile Safari / tunnel clients often miss
+  // whileInView, which left the whole slate invisible.
   if (reduceMotion) {
     return {
       initial: false as const,
@@ -131,12 +133,12 @@ function useCardMotion(index: number) {
     };
   }
   return {
-    initial: { opacity: 0, y: 24 },
+    initial: { opacity: 1, y: 12 },
     whileInView: { opacity: 1, y: 0 },
     viewport: { once: true, margin: "-40px" as const },
     transition: {
-      duration: 0.8,
-      delay: Math.min(index * 0.05, 0.35),
+      duration: 0.5,
+      delay: Math.min(index * 0.04, 0.25),
       ease: [0.32, 0.72, 0, 1] as const,
     },
   };
