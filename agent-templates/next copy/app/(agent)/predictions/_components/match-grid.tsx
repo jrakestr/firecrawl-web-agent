@@ -2,6 +2,7 @@
 
 import { useMemo } from "react";
 import type { KellyMultiplier } from "@/lib/kelly";
+import type { EloPreGame } from "@/lib/predictions/elo";
 import type { MlbGame } from "@/lib/predictions/schema";
 import {
   boardCopyForMode,
@@ -28,6 +29,8 @@ export type MatchGridProps = {
   ouB1: number;
   multiplier: KellyMultiplier;
   today: string;
+  /** Pre-game Elo snapshots keyed by game id */
+  eloPreById: Record<string, EloPreGame>;
 };
 
 export function MatchGrid({
@@ -38,10 +41,21 @@ export function MatchGrid({
   ouB1,
   multiplier,
   today,
+  eloPreById,
 }: MatchGridProps) {
   const board = useMemo(
-    () => partitionBoard(games, today, b0, b1, multiplier, ouB0, ouB1),
-    [games, today, b0, b1, ouB0, ouB1, multiplier],
+    () =>
+      partitionBoard(
+        games,
+        today,
+        b0,
+        b1,
+        multiplier,
+        ouB0,
+        ouB1,
+        eloPreById,
+      ),
+    [games, today, b0, b1, ouB0, ouB1, multiplier, eloPreById],
   );
 
   const copy = boardCopyForMode(board.mode, {

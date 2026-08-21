@@ -4,6 +4,7 @@ import {
   boardCopyForMode,
   ouStakeCopy,
   partitionBoard,
+  sizeElo,
   sizeGame,
   sizeOu,
   sizeWhatIf,
@@ -44,6 +45,23 @@ describe("sizeGame", () => {
     assert.ok(sized.pWin > 0.5);
     assert.ok(sized.ou);
     assert.equal(sized.ou!.line, 8.5);
+    assert.equal(sized.elo, null);
+  });
+
+  it("attaches Elo sizing when pre-game Elo is provided", () => {
+    const sized = sizeGame(
+      baseGame(),
+      0.07,
+      0.11,
+      0.5,
+      -0.12,
+      0.18,
+      -110,
+      { awayElo: 1480, homeElo: 1520, pHome: 0.58, pAway: 0.42 },
+    );
+    assert.ok(sized.elo);
+    assert.equal(sized.elo!.homeElo, 1520);
+    assert.ok(sized.elo!.pSide > 0);
   });
 
   it("flags missing moneyline", () => {
@@ -58,6 +76,22 @@ describe("sizeGame", () => {
     assert.equal(sized.moneylineStatus, "missing");
     assert.equal(sized.kelly, null);
     assert.ok(sized.ou);
+  });
+});
+
+describe("sizeElo", () => {
+  it("bets the +EV Elo side", () => {
+    const elo = sizeElo(
+      baseGame({
+        away_moneyline: 200,
+        home_moneyline: -240,
+      }),
+      { awayElo: 1550, homeElo: 1450, pHome: 0.4, pAway: 0.6 },
+      0.5,
+    );
+    assert.equal(elo.side, "Yankees");
+    assert.ok(elo.kelly);
+    assert.equal(elo.kelly!.recommendation, "BET");
   });
 });
 

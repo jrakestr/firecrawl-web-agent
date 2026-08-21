@@ -11,5 +11,6 @@ Terms for the MLB calibration dashboard under `lib/predictions/` and related rou
 | **Model params** | Fitted ML logistic β₀/β₁ plus calibration bins; OU fit in `model_params.ou_model` jsonb. |
 | **Team stats MV** | Materialized view `team_stats` (snake_case rows). Standings UI reads this only. |
 | **Team stats snapshot** | CamelCase JSON on `model_params.team_stats` for audit; not shown in the UI. |
+| **Season Elo** | Win/loss Elo from Opening Day (`lib/predictions/elo.ts`). Default K=20, home +24, start 1500. Independent of MyGameSim. |
 | **Publishable client** | RLS-scoped Supabase client (`createPublishableClient`). |
 | **Secret client** | Bypass-RLS client for retrain writes (`createSecretClient`). |

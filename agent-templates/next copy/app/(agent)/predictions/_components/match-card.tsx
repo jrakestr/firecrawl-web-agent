@@ -3,8 +3,10 @@
 import { motion, useReducedMotion } from "framer-motion";
 import type { MlbGame } from "@/lib/predictions/schema";
 import {
+  eloStakeCopy,
   moneylineStakeCopy,
   ouStakeCopy,
+  type SizedElo,
   type SizedGame,
   type SizedOu,
 } from "@/lib/predictions/size-game";
@@ -32,7 +34,15 @@ function MatchHeader({ game }: { game: MlbGame }) {
   );
 }
 
-function MetaLine({ game, ou }: { game: MlbGame; ou: SizedOu | null }) {
+function MetaLine({
+  game,
+  ou,
+  elo,
+}: {
+  game: MlbGame;
+  ou: SizedOu | null;
+  elo: SizedElo | null;
+}) {
   const hasPred =
     game.predicted_away_score != null && game.predicted_home_score != null;
   const hasFinal =
@@ -40,7 +50,7 @@ function MetaLine({ game, ou }: { game: MlbGame; ou: SizedOu | null }) {
     game.actual_home_score != null &&
     Boolean(game.actual_winner_team);
 
-  if (!hasPred && !ou && !hasFinal) {
+  if (!hasPred && !ou && !elo && !hasFinal) {
     return (
       <p className="mt-2 text-base text-white/60">Prediction unavailable</p>
     );
@@ -61,6 +71,11 @@ function MetaLine({ game, ou }: { game: MlbGame; ou: SizedOu | null }) {
           Tot {ou.predictedTotal.toFixed(1)} · O/U {ou.line}
         </span>
       ) : null}
+      {elo ? (
+        <span className="ml-3">
+          Elo {Math.round(elo.awayElo)}–{Math.round(elo.homeElo)}
+        </span>
+      ) : null}
       {hasFinal ? (
         <span className="ml-3 text-white/50">
           Final {game.actual_away_score}-{game.actual_home_score} ·{" "}
@@ -77,7 +92,9 @@ function MoneylineBlock({ sized }: { sized: SizedGame }) {
 
   return (
     <div>
-      <div className="text-sm text-white/60">ML · {game.predicted_winner}</div>
+      <div className="text-sm text-white/60">
+        Sim ML · {game.predicted_winner}
+      </div>
       <div className="mt-1 font-mono text-4xl font-semibold tabular-nums text-emerald-300">
         {formatProbPercent(pWin)}
       </div>
@@ -120,6 +137,30 @@ function OverUnderBlock({ ou }: { ou: SizedOu }) {
   );
 }
 
+function EloBlock({ elo }: { elo: SizedElo }) {
+  const stake = eloStakeCopy(elo);
+
+  return (
+    <div>
+      <div className="text-sm text-white/60">Elo · {elo.side}</div>
+      <div className="mt-1 font-mono text-4xl font-semibold tabular-nums text-violet-300">
+        {formatProbPercent(elo.pSide)}
+      </div>
+      <div className="text-sm text-white/60">chance from season Elo</div>
+      <div
+        className={cn(
+          "mt-2 font-mono text-sm",
+          stake.tone === "bet" && "text-violet-300",
+          stake.tone === "skip" && "text-amber-300/90",
+          stake.tone === "muted" && "text-white/50",
+        )}
+      >
+        {stake.text}
+      </div>
+    </div>
+  );
+}
+
 function useCardMotion(index: number) {
   const reduceMotion = useReducedMotion();
   // Never start at opacity 0. Mobile Safari / tunnel clients often miss
@@ -152,16 +193,17 @@ export function SizedMatchCard({
   index: number;
 }) {
   const motionProps = useCardMotion(index);
-  const { game, ou } = sized;
+  const { game, ou, elo } = sized;
 
   return (
     <motion.li {...motionProps} className={CARD_CLASS}>
       <article>
         <MatchHeader game={game} />
-        <MetaLine game={game} ou={ou} />
-        <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8">
+        <MetaLine game={game} ou={ou} elo={elo} />
+        <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 sm:gap-8">
           <MoneylineBlock sized={sized} />
           {ou ? <OverUnderBlock ou={ou} /> : null}
+          {elo ? <EloBlock elo={elo} /> : null}
         </div>
       </article>
     </motion.li>

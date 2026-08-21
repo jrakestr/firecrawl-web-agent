@@ -8,7 +8,7 @@ export const revalidate = 300;
 export const metadata: Metadata = {
   title: "MLB Predictions",
   description:
-    "Calibrated MyGameSim win and Over/Under probs, Kelly stake sizing, and team Brier scores.",
+    "Calibrated MyGameSim win and Over/Under probs, season Elo with K, Kelly stake sizing, and team miss scores.",
 };
 
 export default async function PredictionsPage() {
@@ -25,6 +25,9 @@ export default async function PredictionsPage() {
       b1={board.b1}
       ouB0={board.ouB0}
       ouB1={board.ouB1}
+      eloConfig={board.elo.config}
+      eloStandings={board.elo.standings}
+      eloPreById={board.elo.preGameById}
     />
   );
 }

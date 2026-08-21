@@ -4,12 +4,18 @@ import { useState } from "react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import type { KellyMultiplier } from "@/lib/kelly";
+import type {
+  EloConfig,
+  EloPreGame,
+  EloTeamRating,
+} from "@/lib/predictions/elo";
 import type { CalibrationBin } from "@/lib/predictions/schema";
 import type {
   MlbGame,
   ModelParamsRow,
   TeamStatsRow,
 } from "@/lib/predictions/schema";
+import { EloStandingsTable } from "./elo-standings-table";
 import { MatchGrid } from "./match-grid";
 import { SizerForm } from "./sizer-form";
 import { StandingsTable } from "./standings-table";
@@ -41,6 +47,9 @@ export function DashboardShell({
   b1,
   ouB0,
   ouB1,
+  eloConfig,
+  eloStandings,
+  eloPreById,
 }: {
   games: MlbGame[];
   model: ModelParamsRow | null;
@@ -51,6 +60,9 @@ export function DashboardShell({
   b1: number;
   ouB0: number;
   ouB1: number;
+  eloConfig: EloConfig;
+  eloStandings: EloTeamRating[];
+  eloPreById: Record<string, EloPreGame>;
 }) {
   const [multiplier, setMultiplier] = useState<KellyMultiplier>(0.5);
   const bins = (model?.calibration ?? []) as CalibrationBin[];
@@ -83,7 +95,8 @@ export function DashboardShell({
             </h1>
             <p className="max-w-2xl text-lg leading-relaxed text-white/60">
               MyGameSim scores go through a fit, then Kelly sizes the stake.
-              Moneyline model{" "}
+              Season Elo (K={eloConfig.k}) runs from Opening Day on real
+              results. Moneyline model{" "}
               <span className="font-mono text-base text-white/80">
                 {b0.toFixed(4)} / {b1.toFixed(4)}
               </span>
@@ -114,6 +127,7 @@ export function DashboardShell({
               ouB1={ouB1}
               multiplier={multiplier}
               today={today}
+              eloPreById={eloPreById}
             />
             <SizerForm
               b0={b0}
@@ -126,6 +140,11 @@ export function DashboardShell({
               bins={bins}
               accuracy={model?.accuracy ?? 0}
               skillScore={model?.skill_score ?? 0}
+            />
+            <EloStandingsTable
+              standings={eloStandings}
+              k={eloConfig.k}
+              homeAdvantage={eloConfig.homeAdvantage}
             />
             <StandingsTable teams={teamStats} />
           </div>
