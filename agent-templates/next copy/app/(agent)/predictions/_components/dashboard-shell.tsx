@@ -110,10 +110,10 @@ export function DashboardShell({
             </p>
           </div>
           <Link
-            href="/"
+            href="/agent"
             className="rounded-full border border-white/10 bg-white/5 px-6 py-3 text-base text-white/75 transition-[transform,opacity] duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-white/10 hover:text-white"
           >
-            Back to agent
+            Agent workspace
           </Link>
         </header>
 
