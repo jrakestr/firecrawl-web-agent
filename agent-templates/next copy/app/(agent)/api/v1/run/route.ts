@@ -6,7 +6,7 @@ import { loadAppSections } from "@/prompts/loader";
 
 // Vercel: requires Pro plan. Free tier caps at 10s, Hobby at 60s.
 // Other platforms (Railway, Fly, self-hosted) ignore this export.
-export const maxDuration = 300;
+export const maxDuration = 60;
 
 const DEFAULT_MAX_STEPS = 50;
 const MAX_STEPS_LIMIT = 200;

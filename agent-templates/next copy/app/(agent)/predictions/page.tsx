@@ -3,7 +3,8 @@ import { loadBoard } from "@/lib/predictions/board";
 import { DashboardShell } from "./_components/dashboard-shell";
 
 export const runtime = "nodejs";
-export const revalidate = 300;
+/** Supabase reads happen at request time — skip static prerender at build. */
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "MLB Predictions",

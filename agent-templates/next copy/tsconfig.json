@@ -40,6 +40,7 @@
   ],
   "exclude": [
     "node_modules",
+    "scripts",
     "agent-core/tsup.config.ts",
     "agent-core/**/*.test.ts",
     "agent-core/examples",
